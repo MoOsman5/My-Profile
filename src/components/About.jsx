@@ -44,23 +44,29 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        As a junior full stack developer, I am passionate about web development
-        and problem-solving. I have a strong technical skill set, including
-        HTML5, CSS3, Bootstrap, SASS, Tailwind, JavaScript, TypeScript, Reactjs,
-        React Native, Redux, Nodejs, Express, MongoDB, Java, Git, Github,
-        Firebase, and APIs. I have experience working with design patterns and I
-        am a self-motivated team player. I have gained valuable experience
-        through internships at Teqneia ICT and comprehensive training programs
-        at ITI and NTI. I have participated in various projects, including the
-        development of Movie Max, Car Care, Muscles Hub, Your Furniture, and
-        Date Reminder, using various technologies such as Reactjs, CSS3, HTML5,
-        React Bootstrap, React Native, and Firebase. My interests lie in
-        problem-solving, and I participate in problem-solving competitions like
-        ECPC. I am fluent in Arabic and English, and I am committed to
-        continuous learning and growth in the tech industry.
+        I am a mid-senior full-stack developer with a strong background in web
+        development, backend architecture, and scalable application design. My
+        expertise spans both frontend and backend technologies, including
+        React.js, Next.js, Tailwind CSS, ShadCN, Node.js (NestJS, Express), and
+        SQL Server. I specialize in building secure and efficient systems,
+        implementing authentication with JWT, and optimizing API performance.
+        <br />
+        <br />
+        With hands-on experience in software engineering, I have developed
+        dynamic, high-performance applications while following clean code
+        principles, SOLID design patterns, and best practices. I am proficient
+        in state management with Redux and have a strong understanding of
+        relational and NoSQL databases. Additionally, I actively participate in
+        problem-solving challenges to enhance my analytical skills.
+        <br />
+        <br />
+        I am passionate about continuous learning, collaboration, and
+        delivering high-quality software solutions that drive business growth.
+        As a self-motivated team player, I thrive in fast-paced environments and
+        am always eager to embrace new technologies.
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10">
+      <div className="mt-20 flex flex-wrap justify-center gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

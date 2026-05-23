@@ -29,7 +29,7 @@ import iti from "./iti.png";
 import teqneia from "./teqneia.png";
 import nasnav from "./nasnav.png";
 import deci from './deci.png';
-import abs from './abs.png';
+import abs from './abs.svg';
 
 import carrent from "./world-of-control.png";
 import jobit from "./jobit.png";

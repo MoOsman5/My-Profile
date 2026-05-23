@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [trail, setTrail] = useState({ x: 0, y: 0 });
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const spotlightRef = useRef(null);
+  const mouseRef = useRef({ x: -999, y: -999 });
+  const trailRef = useRef({ x: -999, y: -999 });
   const [isHovered, setIsHovered] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
-      document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
-      setPosition({ x: e.clientX, y: e.clientY });
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
       setIsHidden(false);
     };
 
@@ -27,28 +29,66 @@ const CustomCursor = () => {
     };
   }, []);
 
-  // Smooth lag-trail calculation using requestAnimationFrame for 60/120 FPS performance
+  // Smooth lag-trail calculation using direct DOM style transformations for flawless 120+ FPS performance
   useEffect(() => {
+    if (isHidden) return;
+
     let requestRef;
-    const updateTrail = () => {
-      setTrail((prev) => {
-        const dx = position.x - prev.x;
-        const dy = position.y - prev.y;
-        return {
-          x: prev.x + dx * 0.15,
-          y: prev.y + dy * 0.15,
-        };
-      });
-      requestRef = requestAnimationFrame(updateTrail);
+    const animate = () => {
+      // Initialize trail position if offscreen to prevent massive spring leaps on entry
+      if (trailRef.current.x === -999) {
+        trailRef.current.x = mouseRef.current.x;
+        trailRef.current.y = mouseRef.current.y;
+      }
+
+      // Interpolate trail position with easing factor
+      const dx = mouseRef.current.x - trailRef.current.x;
+      const dy = mouseRef.current.y - trailRef.current.y;
+      
+      // If distance is extremely small (static state), snap completely to prevent subpixel drifting
+      if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05) {
+        trailRef.current.x = mouseRef.current.x;
+        trailRef.current.y = mouseRef.current.y;
+      } else {
+        trailRef.current.x += dx * 0.18;
+        trailRef.current.y += dy * 0.18;
+      }
+
+      // Round coordinates to pixel grid integers to prevent subpixel rounding rendering offset in different elements!
+      const posX = Math.round(mouseRef.current.x);
+      const posY = Math.round(mouseRef.current.y);
+      const trailX = Math.round(trailRef.current.x);
+      const trailY = Math.round(trailRef.current.y);
+
+      // Update positions using direct left/top positioning to bypass parent-transform spec issues!
+      if (dotRef.current) {
+        dotRef.current.style.left = `${posX}px`;
+        dotRef.current.style.top = `${posY}px`;
+      }
+
+      if (ringRef.current) {
+        ringRef.current.style.left = `${trailX}px`;
+        ringRef.current.style.top = `${trailY}px`;
+      }
+
+      // Update cursor spotlight glow
+      if (spotlightRef.current) {
+        spotlightRef.current.style.background = `radial-gradient(400px at ${posX}px ${posY}px, rgba(145, 94, 255, 0.08), transparent 80%)`;
+      }
+
+      requestRef = requestAnimationFrame(animate);
     };
-    requestRef = requestAnimationFrame(updateTrail);
+
+    requestRef = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef);
-  }, [position]);
+  }, [isHidden]);
 
   // Track hover state on interactive clickable elements
   useEffect(() => {
     const handleMouseOver = (e) => {
       const target = e.target;
+      if (!target) return;
+
       const isClickable =
         target.tagName === "A" ||
         target.tagName === "BUTTON" ||
@@ -68,24 +108,23 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Cursor Spotlight Glow - GPU Hardware Accelerated via CSS Variables */}
+      {/* Cursor Spotlight Glow - GPU Hardware Accelerated */}
       <div
+        ref={spotlightRef}
         className="pointer-events-none fixed inset-0 z-30 opacity-40 mix-blend-screen"
-        style={{
-          background: `radial-gradient(400px at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(145, 94, 255, 0.08), transparent 80%)`,
-        }}
       />
 
-      {/* Sci-Fi Targeting HUD Outer Ring - Rotating with Micro Brackets */}
+      {/* Sci-Fi Targeting HUD Outer Ring - Centered via -translate-x-1/2 -translate-y-1/2 */}
       <div
-        className={`pointer-events-none fixed z-50 rounded-full border border-dashed border-[#915eff]/70 transition-all duration-150 ease-out -translate-x-1/2 -translate-y-1/2 flex justify-center items-center ${
+        ref={ringRef}
+        className={`pointer-events-none fixed z-50 rounded-full border border-dashed border-[#915eff]/70 flex justify-center items-center -translate-x-1/2 -translate-y-1/2 transition-[width,height,background-color,border-color] duration-200 ease-out ${
           isHovered 
             ? "w-14 h-14 bg-[#915eff]/10 border-[#915eff] animate-[spin_3s_linear_infinite]" 
             : "w-8 h-8 animate-[spin_12s_linear_infinite]"
         }`}
         style={{
-          left: `${trail.x}px`,
-          top: `${trail.y}px`,
+          left: "-999px",
+          top: "-999px",
         }}
       >
         {/* Cardinal Target Brackets (spin together with the outer ring!) */}
@@ -95,14 +134,15 @@ const CustomCursor = () => {
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[4px] h-[2px] bg-[#915eff] pointer-events-none" />
       </div>
 
-      {/* Precise Inner Tracking Dot - Glowing Neon Core */}
+      {/* Precise Inner Tracking Dot - Centered via -translate-x-1/2 -translate-y-1/2 */}
       <div
-        className={`pointer-events-none fixed z-50 rounded-full bg-[#915eff] shadow-[0_0_10px_#915eff] transition-transform duration-200 -translate-x-1/2 -translate-y-1/2 ${
-          isHovered ? "scale-50 opacity-80" : "w-2.5 h-2.5"
+        ref={dotRef}
+        className={`pointer-events-none fixed z-50 rounded-full bg-[#915eff] shadow-[0_0_10px_#915eff] -translate-x-1/2 -translate-y-1/2 transition-[width,height,opacity] duration-200 ${
+          isHovered ? "w-1.5 h-1.5 opacity-80" : "w-2.5 h-2.5"
         }`}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          left: "-999px",
+          top: "-999px",
         }}
       />
     </>

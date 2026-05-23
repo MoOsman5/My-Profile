@@ -63,58 +63,213 @@ const services = [
 ];
 
 const technologies = [
+  // --- FRONTEND ---
   {
-    name: "HTML 5",
-    icon: html,
+    name: "React JS",
+    icon: reactjs,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 95,
+    iconName: "FaReact"
   },
   {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
+    name: "Next.js",
+    icon: null,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 92,
+    iconName: "SiNextdotjs"
   },
   {
     name: "TypeScript",
     icon: typescript,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 90,
+    iconName: "SiTypescript"
   },
   {
-    name: "React JS",
-    icon: reactjs,
+    name: "JavaScript",
+    icon: javascript,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 94,
+    iconName: "FaJs"
+  },
+  {
+    name: "React Native",
+    icon: null,
+    category: "Frontend",
+    level: "Advanced",
+    percentage: 85,
+    iconName: "FaMobileAlt"
   },
   {
     name: "Redux Toolkit",
     icon: redux,
+    category: "Frontend",
+    level: "Advanced",
+    percentage: 88,
+    iconName: "SiRedux"
   },
   {
     name: "Tailwind CSS",
     icon: tailwind,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 95,
+    iconName: "SiTailwindcss"
   },
   {
-    name: "Node JS",
-    icon: nodejs,
+    name: "HTML 5",
+    icon: html,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 98,
+    iconName: "FaHtml5"
   },
   {
-    name: "MongoDB",
-    icon: mongodb,
+    name: "CSS 3",
+    icon: css,
+    category: "Frontend",
+    level: "Expert",
+    percentage: 95,
+    iconName: "FaCss3Alt"
   },
   {
     name: "Three JS",
     icon: threejs,
+    category: "Frontend",
+    level: "Advanced",
+    percentage: 80,
+    iconName: "SiThreedotjs"
   },
+
+  // --- BACKEND & DATABASES ---
+  {
+    name: "Node JS",
+    icon: nodejs,
+    category: "Backend",
+    level: "Expert",
+    percentage: 93,
+    iconName: "FaNodeJs"
+  },
+  {
+    name: "NestJS",
+    icon: null,
+    category: "Backend",
+    level: "Expert",
+    percentage: 92,
+    iconName: "SiNestjs"
+  },
+  {
+    name: "Express.js",
+    icon: null,
+    category: "Backend",
+    level: "Expert",
+    percentage: 94,
+    iconName: "SiExpress"
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb,
+    category: "Backend",
+    level: "Expert",
+    percentage: 90,
+    iconName: "SiMongodb"
+  },
+  {
+    name: "PostgreSQL",
+    icon: null,
+    category: "Backend",
+    level: "Advanced",
+    percentage: 85,
+    iconName: "SiPostgresql"
+  },
+  {
+    name: "SQL Server",
+    icon: null,
+    category: "Backend",
+    level: "Advanced",
+    percentage: 84,
+    iconName: "DiMsqlServer"
+  },
+  {
+    name: "REST APIs & GraphQL",
+    icon: null,
+    category: "Backend",
+    level: "Expert",
+    percentage: 95,
+    iconName: "AiOutlineApi"
+  },
+
+  // --- TOOLS & DEVOPS ---
   {
     name: "git",
     icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
+    category: "Tools",
+    level: "Expert",
+    percentage: 92,
+    iconName: "FaGitAlt"
   },
   {
     name: "docker",
     icon: docker,
+    category: "Tools",
+    level: "Advanced",
+    percentage: 82,
+    iconName: "FaDocker"
   },
+  {
+    name: "figma",
+    icon: figma,
+    category: "Tools",
+    level: "Advanced",
+    percentage: 80,
+    iconName: "FaFigma"
+  },
+  {
+    name: "Postman",
+    icon: null,
+    category: "Tools",
+    level: "Expert",
+    percentage: 93,
+    iconName: "SiPostman"
+  },
+  {
+    name: "Vite",
+    icon: null,
+    category: "Tools",
+    level: "Expert",
+    percentage: 90,
+    iconName: "SiVite"
+  },
+
+  // --- LEADERSHIP & MENTORSHIP ---
+  {
+    name: "Team Leadership",
+    icon: null,
+    category: "Leadership",
+    level: "Expert",
+    percentage: 90,
+    iconName: "FaUsers"
+  },
+  {
+    name: "Robotics & Coding",
+    icon: null,
+    category: "Leadership",
+    level: "Expert",
+    percentage: 95,
+    iconName: "FaRobot"
+  },
+  {
+    name: "Performance Opt.",
+    icon: null,
+    category: "Leadership",
+    level: "Expert",
+    percentage: 92,
+    iconName: "FaRocket"
+  }
 ];
 
 const experiences = [

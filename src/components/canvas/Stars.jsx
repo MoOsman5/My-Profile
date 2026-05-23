@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
@@ -28,8 +28,25 @@ const Stars = (props) => {
 };
 
 const StarsCanvas = () => {
+  const [showStars, setShowStars] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setShowStars(true);
+      } else {
+        setShowStars(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className='w-full h-auto absolute inset-0 z-[-1]'>
+    <div className={`w-full h-screen fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-700 ${showStars ? 'opacity-100' : 'opacity-0'}`}>
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />

@@ -13,6 +13,12 @@
   color-scheme: dark;
 }
 
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;

@@ -159,13 +159,13 @@ const experiences = [
     ]
   },
   {
-    title: "Full Stack",
+    title: "Software Engineering",
     company_name: "ITI",
     icon: iti,
     iconBg: "#E6DEDD",
     date: "2022/05 - 2022/08",
     points: [
-      "I was privileged to participate in a comprehensive Full Stack Development training program for a period of three months, generously sponsored by ITI."
+      "I was privileged to participate in a comprehensive Software Engineering training program for a period of three months, generously sponsored by ITI."
     ]
   },
   {
@@ -211,7 +211,7 @@ const projects = [
   {
     name: "AKM E-Commerce",
     description:
-      "A premium full-stack clothing storefront & admin dashboard featuring secure state management via Zustand, JWT auth, rich sales reporting using Recharts, Cloudinary optimization pipeline, and robust DTO validations.",
+      "A premium e-commerce clothing storefront & admin dashboard featuring secure state management via Zustand, JWT auth, rich sales reporting using Recharts, Cloudinary optimization pipeline, and robust DTO validations.",
     tags: [
       {
         name: "nextjs",

@@ -7,9 +7,26 @@ import logo from "../assets/MO-logo.png";
 const Navbar = () => {
   const [active, setActive] = useState(" ");
   const [toggle, setToggle] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`${styles.paddingX} w-full flex items-center py-4 fixed top-0 z-20 transition-all duration-300 ${scrolled ? "bg-primary/80 backdrop-blur-md border-b border-white/10 shadow-lg shadow-[#915eff]/5" : "bg-transparent"}`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -23,7 +40,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" className=" h-12 object-contain" />
           <p className="text-white text-[18px] font-bold cursor-pointer flex">
             {" "}
-            Mohamed &nbsp; <span className="sm:block hidden">| Full Stack</span>
+            Mohamed &nbsp; <span className="sm:block hidden">| Software Engineer</span>
           </p>
         </Link>
         <ul className="list-none hidden sm:flex flex-row gap-10">

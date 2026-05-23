@@ -34,6 +34,7 @@ import abs from './abs.png';
 import carrent from "./world-of-control.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import akm from "./akm.png";
 
 
 export {
@@ -69,5 +70,6 @@ export {
   nasnav,
   websiteOn,
   deci,
-  abs
+  abs,
+  akm
 };

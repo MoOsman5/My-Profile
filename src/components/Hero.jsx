@@ -19,7 +19,7 @@ const Hero = () => {
             <span className="text-[#915eff]">Mohamed</span>
           </h1>
           <p className={`${styles.heroSubText} text-white`}>
-            {`I'm a Mid-Senior Full Stack developer`}
+            {`I'm a Senior Full-Stack Developer`}
           </p>
         </div>
       </div>
@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="absolute xs:bottom-0 bottom-2 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
-            <motion.dev
+            <motion.div
               animate={{
                 y: [0, 24, 0],
               }}

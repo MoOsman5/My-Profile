@@ -89,10 +89,10 @@ const CustomCursor = () => {
         }}
       >
         {/* Cardinal Target Brackets (spin together with the outer ring!) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-[4px] bg-[#915eff]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] h-[4px] bg-[#915eff]" />
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[2px] bg-[#915eff]" />
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[4px] h-[2px] bg-[#915eff]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-[4px] bg-[#915eff] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] h-[4px] bg-[#915eff] pointer-events-none" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[2px] bg-[#915eff] pointer-events-none" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[4px] h-[2px] bg-[#915eff] pointer-events-none" />
       </div>
 
       {/* Precise Inner Tracking Dot - Glowing Neon Core */}

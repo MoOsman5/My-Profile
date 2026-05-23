@@ -46,7 +46,7 @@ const StarsCanvas = () => {
   }, []);
 
   return (
-    <div className={`w-full h-screen fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-700 ${showStars ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`stars-canvas-wrapper w-full h-screen fixed inset-0 z-[-1] pointer-events-none transition-opacity duration-700 ${showStars ? 'opacity-100' : 'opacity-0'}`}>
       <Canvas camera={{ position: [0, 0, 1] }} style={{ pointerEvents: 'none' }}>
         <Suspense fallback={null}>
           <Stars />

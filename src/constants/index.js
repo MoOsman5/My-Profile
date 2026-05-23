@@ -231,7 +231,7 @@ const projects = [
       },
     ],
     image: akm,
-    source_code_link: "https://github.com/MoOsman5",
+    source_code_link: "https://akm-ecommerce-pnyk.vercel.app/",
   },
   {
     name: "World of Control",
